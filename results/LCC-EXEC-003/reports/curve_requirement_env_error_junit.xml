@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="0.628" timestamp="2026-10-29T16:50:51.675398+08:00" hostname="LAPTOP-T3TU8CJG"><testcase classname="tests.test_lcc_curve_requirement" name="test_lcc_curve_tracking_meets_frozen_requirements" time="0.017"><failure message="Failed: TC-LCC-CURVE-001 execution ERROR: {'type': 'NameNotFound', 'message': &quot;Environment `lane-keeping` doesn't exist.&quot;}&#10;CSV: outputs\LCC-EXEC-003\raw_logs\LCC-EXEC-003_20261029T085052_075533Z.csv&#10;JSON: outputs\LCC-EXEC-003\run_summaries\LCC-EXEC-003_20261029T085052_075533Z.json">def test_lcc_curve_tracking_meets_frozen_requirements():
+        """TC-LCC-CURVE-001: check closed-loop curve tracking against frozen limits."""
+        run_id = make_run_id()
+        summary = run_curve_scenario(run_id)
+    
+        status = summary["status"]
+        evidence_paths = (
+            f"\nCSV: {summary['evidence']['raw_csv']}"
+            f"\nJSON: {summary['evidence']['summary_json']}"
+        )
+    
+        if status == "ERROR":
+&gt;           pytest.fail(
+                f"{TEST_CASE_ID} execution ERROR: "
+                f"{summary['execution_error']}{evidence_paths}"
+            )
+E           Failed: TC-LCC-CURVE-001 execution ERROR: {'type': 'NameNotFound', 'message': "Environment `lane-keeping` doesn't exist."}
+E           CSV: outputs\LCC-EXEC-003\raw_logs\LCC-EXEC-003_20261029T085052_075533Z.csv
+E           JSON: outputs\LCC-EXEC-003\run_summaries\LCC-EXEC-003_20261029T085052_075533Z.json
+
+tests\test_lcc_curve_requirement.py:465: Failed</failure></testcase></testsuite></testsuites>

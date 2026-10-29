@@ -1,0 +1,84 @@
+{
+  "execution_id": "LCC-EXEC-003",
+  "run_id": "LCC-EXEC-003_20261029T085052_075533Z",
+  "test_case_id": "TC-LCC-CURVE-001",
+  "requirement_id": "LCC-REQ-CURVE-001",
+  "status": "ERROR",
+  "executed_at_utc": "2026-10-29T08:50:52.078708+00:00",
+  "scenario": {
+    "environment_id": "lane-keeping-v0",
+    "lane_type": "SineLane",
+    "seed": 42,
+    "steps_planned": 60,
+    "steps_recorded": 0,
+    "start_longitudinal_m": 5.0,
+    "start_lateral_m": 0.0,
+    "initial_lateral_error_m": null,
+    "expected_initial_speed_mps": 8.3,
+    "observed_initial_speed_mps": null,
+    "state_noise": 0.0,
+    "derivative_noise": 0.0
+  },
+  "controller_parameters": {
+    "k_lateral": 0.025,
+    "k_heading": 0.45,
+    "max_action": 1.0
+  },
+  "software_versions": {
+    "python": null,
+    "gymnasium": "1.4.0",
+    "highway-env": "1.12.1",
+    "numpy": "2.4.6",
+    "pytest": "9.1.1"
+  },
+  "source_hashes": {
+    "controller_sha256": "fbc115d13338c5b15f26ee2b2c2583725f869134f65577c104a8a7061053fcaa",
+    "test_script_sha256": "cf33b85db683ff611ecb27bad52ea00baf4a5aadeaf76ca5309d31cf3041c308",
+    "test_design_sha256": "b049cc6bff913399bc6867eb2939c65becc1205e68d352e84bceb02f1ab535cf"
+  },
+  "metrics": {
+    "max_abs_lateral_error_m": null,
+    "final_lateral_error_m": null,
+    "final_abs_lateral_error_m": null,
+    "lane_departure_samples": 0,
+    "collision_samples": 0,
+    "invalid_action_samples": 0
+  },
+  "criteria": {
+    "REQ-CURVE-01_max_abs_lateral_error_le_1m": {
+      "pass": false,
+      "limit_m": 1.0,
+      "observed_max_abs_m": null
+    },
+    "REQ-CURVE-02_final_10_samples_within_0_25m": {
+      "pass": false,
+      "tail_length": 10,
+      "limit_m": 0.25,
+      "observed_final_abs_m": null
+    },
+    "REQ-CURVE-03_within_lane_and_no_collision": {
+      "pass": false,
+      "all_samples_within_lane": false,
+      "no_collision": false
+    },
+    "REQ-CURVE-04_finite_data_and_valid_actions": {
+      "pass": false,
+      "finite_inputs_and_evaluations": false,
+      "valid_actions": false
+    }
+  },
+  "violations": [
+    "REQ-CURVE-01_max_abs_lateral_error_le_1m",
+    "REQ-CURVE-02_final_10_samples_within_0_25m",
+    "REQ-CURVE-03_within_lane_and_no_collision",
+    "REQ-CURVE-04_finite_data_and_valid_actions"
+  ],
+  "execution_error": {
+    "type": "NameNotFound",
+    "message": "Environment `lane-keeping` doesn't exist."
+  },
+  "evidence": {
+    "raw_csv": "outputs\\LCC-EXEC-003\\raw_logs\\LCC-EXEC-003_20261029T085052_075533Z.csv",
+    "summary_json": "outputs\\LCC-EXEC-003\\run_summaries\\LCC-EXEC-003_20261029T085052_075533Z.json"
+  }
+}

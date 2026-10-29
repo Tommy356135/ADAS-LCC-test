@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="2.007" timestamp="2026-10-29T16:55:22.223228+08:00" hostname="LAPTOP-T3TU8CJG"><testcase classname="tests.test_lcc_curve_requirement" name="test_lcc_curve_tracking_meets_frozen_requirements" time="0.042"><failure message="Failed: TC-LCC-CURVE-001 requirement FAIL. Violations: ['REQ-CURVE-01_max_abs_lateral_error_le_1m', 'REQ-CURVE-02_final_10_samples_within_0_25m']. Metrics: {'max_abs_lateral_error_m': 2.639783591474906, 'final_lateral_error_m': 2.109907717947885, 'final_abs_lateral_error_m': 2.109907717947885, 'lane_departure_samples': 0, 'collision_samples': 0, 'invalid_action_samples': 0}.&#10;CSV: outputs\LCC-EXEC-003\raw_logs\LCC-EXEC-003_20261029T085523_828404Z.csv&#10;JSON: outputs\LCC-EXEC-003\run_summaries\LCC-EXEC-003_20261029T085523_828404Z.json">def test_lcc_curve_tracking_meets_frozen_requirements():
+        """TC-LCC-CURVE-001: check closed-loop curve tracking against frozen limits."""
+        run_id = make_run_id()
+        summary = run_curve_scenario(run_id)
+    
+        status = summary["status"]
+        evidence_paths = (
+            f"\nCSV: {summary['evidence']['raw_csv']}"
+            f"\nJSON: {summary['evidence']['summary_json']}"
+        )
+    
+        if status == "ERROR":
+            pytest.fail(
+                f"{TEST_CASE_ID} execution ERROR: "
+                f"{summary['execution_error']}{evidence_paths}"
+            )
+    
+        if status == "FAIL":
+&gt;           pytest.fail(
+                f"{TEST_CASE_ID} requirement FAIL. "
+                f"Violations: {summary['violations']}. "
+                f"Metrics: {summary['metrics']}."
+                f"{evidence_paths}"
+            )
+E           Failed: TC-LCC-CURVE-001 requirement FAIL. Violations: ['REQ-CURVE-01_max_abs_lateral_error_le_1m', 'REQ-CURVE-02_final_10_samples_within_0_25m']. Metrics: {'max_abs_lateral_error_m': 2.639783591474906, 'final_lateral_error_m': 2.109907717947885, 'final_abs_lateral_error_m': 2.109907717947885, 'lane_departure_samples': 0, 'collision_samples': 0, 'invalid_action_samples': 0}.
+E           CSV: outputs\LCC-EXEC-003\raw_logs\LCC-EXEC-003_20261029T085523_828404Z.csv
+E           JSON: outputs\LCC-EXEC-003\run_summaries\LCC-EXEC-003_20261029T085523_828404Z.json
+
+tests\test_lcc_curve_requirement.py:471: Failed</failure></testcase></testsuite></testsuites>
